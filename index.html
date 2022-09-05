@@ -735,6 +735,7 @@ function loadScript(args) {
 
 // Check if poly-fills are needed
 
+ document.addEventListener("DOMContentLoaded", function(event) {
 polyfill({
   // fills needed for all browsers support 
   fills: ['Array.prototype.map','fetch','Promise'],
@@ -747,6 +748,9 @@ polyfill({
   
   }
 });
+  });  
+  
+
 </script>
 
 <media-element type="anime" name="da"></media-element>
