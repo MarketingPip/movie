@@ -640,7 +640,7 @@ script.onload = function () {
 
 
 DEBUG("Now loading Media Card Web Component")
-window.customElements.define("media-element", Media_Details)
+
     // Load the Media-Card.js Component 
   
 };
@@ -676,7 +676,7 @@ script.onload = function () {
 
   DEBUG("Constructed Stylesheet Polyfill Was Loaded")
 DEBUG("Now loading other polyfill")
-loadPolyFill()
+
     // Load the Media-Card.js Component 
   
 };
@@ -686,5 +686,8 @@ loadPolyFill()
 
 }
 addConstructedCSSPolyfill()  
+loadPolyFill()   
+window.customElements.define("media-element", Media_Details)   
+   
 </script>
 </html>
