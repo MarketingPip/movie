@@ -621,7 +621,7 @@ function loadPolyFill(){
       let head = document.head;
 let script = document.createElement("script");
 
-  script.src = "https://unpkg.com/construct-style-sheets-polyfill";
+  script.src = "https://polyfill.io/v3/polyfill.js?features=Array.prototype.map,fetch,Promise;
 
   head.appendChild(script);
   CSSPolyFillAdded = true
