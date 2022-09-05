@@ -602,27 +602,11 @@ script2.src = "https://unpkg.com/construct-style-sheets-polyfill"
 document.head.appendChild(script1); 
   
 document.head.appendChild(script2);   
-  
-  
-  
-  
-  // On Error Loading Polyfills
-script1.onerror = function () {
- 
-  console.error("Error adding polyfills")
-  
-}
-
-  
-  /// Polyfill Load Successful 
-script1.onload = function () {
- 
-  // Let the Magic Begin 
 
 window.customElements.define("media-element", Media_Details)
 
   
-};
+
 }
 loadPolyfills()
 </script>
