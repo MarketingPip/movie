@@ -1,4 +1,6 @@
 <script defer>
+let PolyAdded = false;
+let CSSPolyAdded = false;
 const mainSheet = new CSSStyleSheet()
 mainSheet.replaceSync(`
   @import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,700,800');
@@ -325,6 +327,23 @@ class Media_Details extends HTMLElement {
     this.shadow = this.attachShadow({
       mode: 'open'
     })
+        const linkElem = document.createElement('script');
+linkElem.setAttribute('src', 'https://polyfill.io/v3/polyfill.js?features=Array.prototype.map,fetch,Promise');
+    
+         const linkElem2 = document.createElement('script');
+linkElem2.setAttribute('src', 'https://unpkg.com/construct-style-sheets-polyfill');   
+
+// Attach the created element to the shadow DOM
+
+    if (PolyAdded === false){
+      document.head.appendChild(linkElem); 
+      PolyAdded = true;
+    }
+    
+     if (CSSPolyAdded === false){
+      document.head.appendChild(linkElem2); 
+      CSSPolyAdded = true;
+    }
     const sheets = [mainSheet]
     if(this.theme !== 'light') {
       sheets.push(darkTheme)
@@ -371,6 +390,12 @@ class Media_Details extends HTMLElement {
     this.blurBack = this.shadow.querySelector('.blur_back')
     this.collectionName = this.shadow.querySelector('.collection-name')
     this.primaryGenreName = this.shadow.querySelector('.primary-genre-name')
+  if (!this.name){
+    this.populateError({
+        status_message: `Please provide an ${this.type} name.`
+      })
+    return;
+  }  
     if(typeof TheMovieDB_APIKey === 'undefined' && (this.type === 'tv' || this.type === 'film')){
       this.populateError({
         status_message: 'Please provide an API Key'
@@ -588,27 +613,7 @@ class Media_Details extends HTMLElement {
   }
 }
 
-
-function loadPolyfills(){
-  
-
-var script1 = document.createElement('script');
-script1.src = "https://polyfill.io/v3/polyfill.js?features=Array.prototype.map,fetch,Promise";
-
-var script2 = document.createElement('script');
-    
-script2.src = "https://unpkg.com/construct-style-sheets-polyfill"
-  
-document.head.appendChild(script1); 
-  
-document.head.appendChild(script2);   
-
 window.customElements.define("media-element", Media_Details)
-
-  
-
-}
-loadPolyfills()
 </script>
 
 <media-element type="anime" name="da"></media-element>
