@@ -597,7 +597,84 @@ class Media_Details extends HTMLElement {
   }
 }
 
+  function DEBUG(message){
+    console.log(message)
+  }
+  
+let CSSPolyFillAdded = false;
+let PolyFillAdded = false; 
+function loadPolyFill(){
+
+   /// avoid adding the CSS stylesheet pollyfill more than once... 
+  if (PolyFillAdded == false){
+      let head = document.head;
+let script = document.createElement("script");
+
+  script.src = "https://unpkg.com/construct-style-sheets-polyfill";
+
+  head.appendChild(script);
+  CSSPolyFillAdded = true
+   
+  
+  // On Error Loading Markdown Parser
+script.onerror = function () {
+ 
+  console.error("Error: Constructed Stylesheet Polyfill")
+  
+}
+
+  
+  /// CSS Stylesheet Polyfill Load Successful 
+script.onload = function () {
+
+
+DEBUG("Now loading Media Card Web Component")
 window.customElements.define("media-element", Media_Details)
+    // Load the Media-Card.js Component 
+  
+};
+  } 
+
+
+
+}
+  
+function addConstructedCSSPolyfill(){
+
+   /// avoid adding the CSS stylesheet pollyfill more than once... 
+  if (CSSPolyFillAdded == false){
+      let head = document.head;
+let script = document.createElement("script");
+
+  script.src = "https://unpkg.com/construct-style-sheets-polyfill";
+
+  head.appendChild(script);
+  CSSPolyFillAdded = true
+   
+  
+  // On Error Loading Markdown Parser
+script.onerror = function () {
+ 
+  console.error("Error: Constructed Stylesheet Polyfill")
+  
+}
+
+  
+  /// CSS Stylesheet Polyfill Load Successful 
+script.onload = function () {
+
+  DEBUG("Constructed Stylesheet Polyfill Was Loaded")
+DEBUG("Now loading other polyfill")
+loadPolyFill()
+    // Load the Media-Card.js Component 
+  
+};
+  } 
+
+
+
+}
+addConstructedCSSPolyfill()  
 </script>
 
 <media-element type="anime" name="da"></media-element>
